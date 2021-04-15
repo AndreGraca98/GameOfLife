@@ -1,8 +1,7 @@
-import os
-import cv2
+import os, cv2
 import numpy as np
-from numba import jit, njit
 import tkinter as tk
+from numba import jit, njit
 
 
     
@@ -67,13 +66,17 @@ def freeze(*args):
 
 def mouse_click(event, x, y, *args):
     global mouseX,mouseY
-    if event == cv2.EVENT_LBUTTONDOWN:
+    if event == cv2.EVENT_LBUTTONDOWN and freeze_flag:
         mouseX,mouseY = x,y
         print(mouseX, mouseY)
 
 
 if __name__ == '__main__':
-    global height, width, res, freeze_flag
+    global height, width, res
+    global freeze_flag
+    global mouseX, mouseY
+    mouseX = None
+    mouseY = None
     freeze_flag = False
     full_screen_flag = True
 
@@ -88,38 +91,46 @@ if __name__ == '__main__':
         width = 640//res
 
     smaller_grid = np.zeros([height, width])
-    print(f'Grid size: {smaller_grid.shape}')
-
-    smaller_grid[height//2][width//2 + -1] = 1
-    smaller_grid[height//2][width//2 + 0] = 1
-    smaller_grid[height//2][width//2 + 1] = 1
-
     old_grid = smaller_grid
-    show_grid = cv2.resize(smaller_grid, (width*res, height*res), interpolation=cv2.INTER_NEAREST)
     
 
+    # smaller_grid[height//2][width//2 + -1] = 1
+    # smaller_grid[height//2][width//2 + 0] = 1
+    # smaller_grid[height//2][width//2 + 1] = 1
 
-    cv2.imshow('Game of Life', show_grid)
+    # smaller_grid[height//2][width//2 + -1] = 1
+    # smaller_grid[height//2][width//2 + 0] = 1
+    # smaller_grid[height//2][width//2 + 1] = 1
+    # smaller_grid[height//2 - 1][width//2 + -1] = 1
+    # smaller_grid[height//2 -2 ][width//2 + 0] = 1
+
     if not full_screen_flag:
-        cv2.moveWindow("Game of Life",screen.winfo_screenwidth()//2-width*res//2,screen.winfo_screenheight()//2-height*res//2)
-    cv2.waitKey(1000)
+        cv2.moveWindow("Game of Life",screen.width()//2-width*res//2,screen.winfo_screenheight()//2-height*res//2)
+
     cv2.createButton("Freeze",freeze,None,cv2.QT_PUSH_BUTTON,1)
     cv2.setMouseCallback('Game of Life',mouse_click)
 
     while 1:
         show_grid = cv2.resize(smaller_grid, (width*res, height*res), interpolation=cv2.INTER_NEAREST)
-
         cv2.imshow('Game of Life', show_grid)
-        if cv2.waitKey(10) & 0xFF == ord('q'):
-            break
+
 
 
         if not freeze_flag:
-            cv2.waitKey(480)
             smaller_grid = update_grid(smaller_grid)
+        else:
+            if mouseY and mouseX:
+                smaller_grid[mouseY//res][mouseX//res] = 1
+                mouseX = None
+                mouseY = None
+    
+
+
+        if cv2.waitKey(100) & 0xFF == ord('q'):
+            break
 
         if not np.count_nonzero(smaller_grid):
             print('New grid is empty!')
-            break
+            # break
 
 
