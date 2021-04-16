@@ -5,11 +5,8 @@ This is my implementation of the Game of Life from Conways game of life.
 
 # Requirements
   - Python <= 3.7
-  - Opencv
-  - Qt
-  - Numpy
+  - Opencv with qt support
   - Numba
-  - 
 
 # Run
   Step 1:
