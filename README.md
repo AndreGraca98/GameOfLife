@@ -15,3 +15,7 @@ This is my implementation of the Game of Life from Conways game of life.
   
     cd [path_to_this_repository]/virtual_environment
     
+    source create_env.sh
+    
+    python gameoflife.py
+    
