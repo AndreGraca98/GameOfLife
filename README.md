@@ -8,14 +8,19 @@ This is my implementation of the Game of Life from Conways game of life.
   - Opencv with qt support
   - Numba
 
-## Run
-  Step 1:
+## How to use
+  Create environment
   
     cd [path_to_this_repository]/virtual_environment
     source create_env.sh  
     cd ..
 
-  Step 2:
+  Run the program
   
     python gameoflife.py
     
+### Notes
+  * After starting the program press `ctrl + p` to show the freeze button
+  * Click on the freeze button to stop updating the grid
+  * Click on the grid to change the cells to a live state
+  * Click again on the freeze button and watch the cells update
