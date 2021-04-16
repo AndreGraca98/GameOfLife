@@ -27,6 +27,8 @@ This is my implementation of the Game of Life from Conways game of life.
 
 
 
+
+
 ## TODO
   * Change cell state to dead
   * Add trackbar to change run speed
