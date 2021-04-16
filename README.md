@@ -24,3 +24,11 @@ This is my implementation of the Game of Life from Conways game of life.
   * Click on the freeze button to stop updating the grid
   * Click on the grid to change the cells to a live state
   * Click again on the freeze button and watch the cells update
+
+
+
+## TODO
+  * Change cell state to dead
+  * Add trackbar to change run speed
+  * Clean code
+  * Add parser
