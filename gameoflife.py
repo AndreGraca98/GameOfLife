@@ -123,8 +123,7 @@ if __name__ == '__main__':
                 smaller_grid[mouseY//res][mouseX//res] = 1
                 mouseX = None
                 mouseY = None
-    
-
+                
 
         if cv2.waitKey(100) & 0xFF == ord('q'):
             break
