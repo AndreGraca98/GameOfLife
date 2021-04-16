@@ -12,10 +12,19 @@ This is my implementation of the Game of Life from Conways game of life.
   - 
 
 # Run
+  Step 1:
   
     cd [path_to_this_repository]/virtual_environment
-    
+  
+  Step 2:
+  
     source create_env.sh
-    
+  
+  Step 3:
+  
+    cd ..
+
+  Step 4:
+  
     python gameoflife.py
     
