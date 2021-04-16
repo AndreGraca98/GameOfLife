@@ -1,4 +1,5 @@
-import os, cv2
+import os
+import cv2
 import numpy as np
 import tkinter as tk
 from numba import jit, njit
@@ -78,7 +79,7 @@ if __name__ == '__main__':
     mouseX = None
     mouseY = None
     freeze_flag = False
-    full_screen_flag = True
+    full_screen_flag = False
 
     res = 10  # resolution
 
@@ -104,8 +105,10 @@ if __name__ == '__main__':
     # smaller_grid[height//2 - 1][width//2 + -1] = 1
     # smaller_grid[height//2 -2 ][width//2 + 0] = 1
 
+    cv2.namedWindow("Game of Life")
+
     if not full_screen_flag:
-        cv2.moveWindow("Game of Life",screen.width()//2-width*res//2,screen.winfo_screenheight()//2-height*res//2)
+        cv2.moveWindow("Game of Life",screen.winfo_screenwidth()//2-width*res//2,screen.winfo_screenheight()//2-height*res//2)
 
     cv2.createButton("Freeze",freeze,None,cv2.QT_PUSH_BUTTON,1)
     cv2.setMouseCallback('Game of Life',mouse_click)

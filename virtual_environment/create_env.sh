@@ -1,4 +1,4 @@
-# Run: bash create_env.sh
+# Run: source create_env.sh
 
 # Create env
 conda init
